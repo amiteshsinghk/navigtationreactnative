@@ -26,14 +26,13 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
-// import Home from './screens/home';
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screens/home';
 import Review from './screens/review';
 import About from './screens/about';
 import Messages from './screens/messages';
+import LogIn from './screens/login';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Feed from './screens/feed';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -43,6 +42,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import SignUp from './screens/signup';
 
 // const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -84,6 +84,23 @@ function DrawerNavigator() {
     </Drawer.Navigator>
   );
 }
+
+function logInNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="LogIn" component={LogIn} options={{
+        headerShown: true
+      }} />
+
+      <Stack.Screen name="SignUp" component={SignUp} options={{
+        headerShown: true
+      }} />
+
+
+    </Stack.Navigator>
+  );
+}
+
 function TabNavigator() {
   return (
     <Tab.Navigator
@@ -92,11 +109,11 @@ function TabNavigator() {
           let iconName;
 
           if (route.name === 'Feed') {
-            iconName = focused
-              ? 'home'
-              : 'home-outline';
-          } else if (route.name === 'Messages') {
-            iconName = focused ? 'caret-back' : 'arrow-back-outline';
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'News') {
+            iconName = focused ? 'newspaper' : 'newspaper-outline';
+          } else if (route.name === 'Login') {
+            iconName = focused ? 'log-in' : 'log-in-outline'
           }
 
           // You can return any component that you like here!
@@ -104,12 +121,18 @@ function TabNavigator() {
         },
         tabBarActiveTintColor: 'tomato',
         tabBarInactiveTintColor: 'gray',
+        tabBarLabelStyle: {
+          fontSize: 18
+        }
       })}
     >
       <Tab.Screen name="Feed" component={HomeStackScreen}
 
         options={{ tabBarBadge: 2, headerShown: true }} Ionicons />
-      <Tab.Screen name="Messages" component={Messages} />
+      <Tab.Screen name="News" component={Messages} />
+      <Tab.Screen name="Login" component={logInNavigator} options={{
+        headerShown: false
+      }} />
 
 
     </Tab.Navigator>
@@ -126,11 +149,11 @@ const App: () => Node = () => {
           headerShown: false,
           title: 'My Home',
           // headerRight: () => (
-            // <Button
-            //   onPress={() => }
-            //   title="Info"
-            //   color="#fff"
-            // />
+          // <Button
+          //   onPress={() => }
+          //   title="Info"
+          //   color="#fff"
+          // />
           // ),
         }}
         />
@@ -138,6 +161,10 @@ const App: () => Node = () => {
           headerShown: false,
           title: 'feed'
         }} />
+
+
+
+
 
       </Stack.Navigator>
       {/* <Stack.Navigator>

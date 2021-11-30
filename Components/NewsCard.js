@@ -3,14 +3,14 @@ import { View, StyleSheet,Text, Image, Dimensions } from "react-native";
 
 const {width, height} = Dimensions.get('window')
 
-const NewsCard =({}) =>{
+const NewsCard =({item}) =>{
     return(
         <View style = {styles.cardView}>
             {/* <Text>News Card</Text> */}
-            <Text style ={styles.title}>Ghislaine Maxwell's sex-trafficking trial begins Monday. Prosecutors allege she created a network of underage victims for the late Jeffrey Epstein - CNN</Text>
-                <Text style ={styles.author}>Lauren del Valle, CNN</Text>
-                <Image style ={styles.image}/>
-                <Text style ={styles.description}>The public will get a glimpse into the life of the late Jeffrey Epstein as the sex-trafficking trial of his longtime companion Ghislaine Maxwell gets underway.</Text>
+            <Text style ={styles.title}>{item.title}</Text>
+                <Text style ={styles.author}>{item.author}</Text>
+                <Image style ={styles.image} source={{uri: item.urlToImage}}/>
+                <Text style ={styles.description}>{item.description}</Text>
         </View>
     )
 }
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
             
     },
     image:{
-        width:width,
         height:height/6,
         marginLeft:width*0.05,
         marginRight: width*0.05,
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
         marginVertical : height *0.03,
         marginHorizontal : height *0.015,
         fontSize:15,
-        color:'lightGray'
+        color:'grey'
 
     },
     description:{
