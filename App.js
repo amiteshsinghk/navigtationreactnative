@@ -43,6 +43,8 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 import SignUp from './screens/signup';
+import PostData from './screens/postData';
+import Update from './screens/update';
 
 // const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -100,6 +102,18 @@ function logInNavigator() {
     </Stack.Navigator>
   );
 }
+function postNavigator(){
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="Post" component={PostData} options={{
+        headerShown:true
+      }}/>
+      <Stack.Screen name="Update" component={Update} options={{
+        headerShown:true
+      }}/>
+    </Stack.Navigator>
+  );
+}
 
 function TabNavigator() {
   return (
@@ -131,6 +145,9 @@ function TabNavigator() {
         options={{ tabBarBadge: 2, headerShown: true }} Ionicons />
       <Tab.Screen name="News" component={Messages} />
       <Tab.Screen name="Login" component={logInNavigator} options={{
+        headerShown: false
+      }} />
+      <Tab.Screen name="Post" component={postNavigator} options={{
         headerShown: false
       }} />
 
